@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  SELLER
+  ADMIN
+}
+
+// Define the User table to store information about users
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+
+  presentAddress String
+  mobileNumber   String
+
+  Order Order[]
+}
+
+// Define the Seller table to store information about sellers
+model Seller {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  presentAddress String
+  mobileNumber   String
+  role           Role
+
+  Order    Order[]
+  products Product[]
+}
+
+// Define the Product table to store information about products
+model Product {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  Catagory    String
+  image       String
+  price       Float
+  stock       Int
+  sellerId    Int // Foreign key referencing Seller table
+
+  // Define a many-to-one relationship between Product and Seller
+  // Many Products belong to one Seller
+  seller Seller  @relation(fields: [sellerId], references: [id])
+  Order  Order[]
+}
+
+// Define the Order table to store information about orders
+model Order {
+  id         Int      @id @default(autoincrement())
+  userId     Int // Foreign key referencing User table
+  productId  Int // Foreign key referencing Product table
+  quantity   Int
+  totalPrice Float
+  createdAt  DateTime @default(now())
+
+  // Define a many-to-one relationship between Order and User
+  // Many Orders belong to one User
+  user User @relation(fields: [userId], references: [id])
+
+  // Define a many-to-one relationship between Order and Product
+  // Many Orders contain one Product
+  product  Product @relation(fields: [productId], references: [id])
+  Seller   Seller? @relation(fields: [sellerId], references: [id])
+  sellerId Int?
+}

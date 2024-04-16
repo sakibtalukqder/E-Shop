@@ -1,7 +1,5 @@
 
 "use client";
-import Image from "next/image";
-import { Carousel } from "keep-react";
 import Catagory from "./Catagory";
 
 const url = [
@@ -15,29 +13,26 @@ const url = [
     "/Carosel/cImage-8.jpg",
 ]
 
-const api = "/Carosel/img10.jpg"
-
 export const SliderComponent = () => {
     return (
-        <div className="flex flex-wrap gap-3 items-start justify-center">
-
-            <div className="w-2/3">
-                <Carousel width={600} height={700} slideInterval={5000} showControls={true} indicators={true}>
-                    {
-                        url.map((url, index) => (
-                            <Image key={index} src={url} width={600} height={600} alt={`slider-${index}`} />
-                        ))
-                    }
-                </Carousel>
-
-                <Catagory />
-
+        <div className="flex-col items-center justify-center w-[80%] rounded-md">
+            <div className="carousel justify-center w-full">
+                {
+                    url.map((url, index) => (
+                        <div key={index} id={`item${index}`} className="carousel-item w-full shadow-lg">
+                            <img src={url} className="w-full" alt={`slider-${index}`} />
+                        </div>
+                    ))
+                }
             </div>
-
-            <div className="w-1/4">
-                <Image src={api} width={700} height={700} alt="slider" />
+            <div className="flex items-center justify-center w-full py-2 gap-2">
+                {
+                    url.map((url, index) => (
+                        <a key={index} href={`#item${index + 1}`} className="btn btn-xs">{index + 1}</a>
+                    ))
+                }
             </div>
-
+            <Catagory />
         </div>
     )
 }

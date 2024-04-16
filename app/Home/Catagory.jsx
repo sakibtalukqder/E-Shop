@@ -8,7 +8,11 @@ const Catagory = () => {
         <li><a>Smart Watch</a></li>
         <li><a>Headphone</a></li>
         <li><a>Air Buds</a></li>
-        <li><a>Computer Accessory</a></li>
+        <li><a>Game Accessory</a></li>
+        <li><a>Tablate</a></li>
+        <li><a>Smart Watch</a></li>
+        <li><a>Headphone</a></li>
+        <li><a>Air Buds</a></li>
     </>
 
     return (

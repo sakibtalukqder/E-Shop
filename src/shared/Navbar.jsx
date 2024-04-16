@@ -5,8 +5,9 @@ const Navbar = () => {
 
     const menu = <>
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/product">Product</Link></li>
-        <li><Link href="/about">About</Link></li>
+        <li><Link href="/Components/product">Product</Link></li>
+        <li><Link href="/Components/contract">Contract</Link></li>
+        <li><Link href="/Components/about">About</Link></li>
     </>
 
     return (
@@ -21,7 +22,13 @@ const Navbar = () => {
                             {menu}
                         </ul>
                     </div>
-                    <a className="font-bold btn-ghost text-3xl"><span className='text-green-500'>E</span>-<span className='bg-gray-900 text-white'>Shoes</span></a>
+                    <Link href={'/'} className="font-bold btn-ghost text-xl">
+                        <div className="flex items-center justify-center p-2 rounded-md bg-blue-900 text-white">
+                            <span className="text-2xl font-bold text-green-500">E</span>
+                            <span className="text-2xl font-bold">-</span>
+                            <span className="text-2xl font-bold text-red-500">Shop</span>
+                        </div>
+                    </Link>
                 </div>
 
                 <div className="navbar-end hidden lg:flex">
@@ -45,7 +52,7 @@ const Navbar = () => {
                                     <span className="font-bold text-lg">8 Items</span>
                                     <span className="text-info">Subtotal: $999</span>
                                     <div className="card-actions">
-                                        <button className="btn btn-primary btn-block">View cart</button>
+                                        <Link href={'/Outlate/checkout'} className="btn btn-primary btn-block">View cart</Link>
                                     </div>
                                 </div>
                             </div>
@@ -60,12 +67,15 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
-                                <a className="justify-between">
+                                <Link href={'/Seller/profile'} className="justify-between">
                                     Profile
-                                    <span className="badge">New</span>
-                                </a>
+                                </Link>
                             </li>
-                            <li><a>Settings</a></li>
+                            <li>
+                                <Link href={'/Seller/Dashboard'} className="justify-between">
+                                    Dashboard
+                                </Link>
+                            </li>
                             <li><a>Logout</a></li>
                         </ul>
                     </div>
