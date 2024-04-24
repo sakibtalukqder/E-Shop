@@ -16,8 +16,8 @@ export const POST = async (request) => {
         const data = { name, description, image, price, stock, Catagory, sellerId }
         console.log("New Data : ", data);
         const result = await prisma.product.create({ data: data })
-        return NextResponse.json({ message: "Product Added" }, { status: 201 })
+        return NextResponse.json({ message: "Product Added Successfull" }, { status: 201 })
     } catch (error) {
-        return Response.json({ error: error.message });
+        return Response.json({ message: "Network Cunnection Error" }, { status: 400 });
     }
 }

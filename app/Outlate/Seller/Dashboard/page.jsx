@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-export default function SellerDashboard() {
+export default function SellerDashboard({children}) {
   return (
     <Fragment>
       <Head>
@@ -16,13 +16,13 @@ export default function SellerDashboard() {
             <p className="text-gray-500 text-sm mt-2">Welcome, Seller!</p>
           </div>
           <nav className="mt-6">
-            <a href="#" className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+            <Link href={'/Outlate/Seller/Dashboard/Orders'} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
               <span>Orders</span>
-            </a>
-            <a href="#" className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+            </Link>
+            <Link href={'/Outlate/Seller/Dashboard/Products'} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
               <span>Products</span>
-            </a>
-            <Link href={"PostProduct"} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+            </Link>
+            <Link href={"/Outlate/Seller/PostProduct"} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
               <span>Upload Product</span>
             </Link>
             {/* Add more sidebar links as needed */}
@@ -30,9 +30,10 @@ export default function SellerDashboard() {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 p-8">
-          <h2 className="text-2xl font-semibold mb-4">Orders</h2>
+        <div className="flex-1 p-8 overflow-scroll">
+          
           {/* Add your main content here */}
+          {children}
         </div>
       </div>
     </Fragment>

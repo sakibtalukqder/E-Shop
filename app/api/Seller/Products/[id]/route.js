@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 export const GET = async (request, { params }) => {
     const { id } = params;
     try {
-        const Product = await prisma.product.findFirst({
+        const Product = await prisma.product.findMany({
             where: {
-                id: parseInt(id),
+                sellerId: parseInt(id),
             },
         })
         return NextResponse.json({ Product }, { status: 200 })

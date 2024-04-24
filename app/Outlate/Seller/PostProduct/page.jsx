@@ -1,4 +1,5 @@
 "use client"
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -10,6 +11,10 @@ const imgUrl = "https://buffer.com/library/content/images/size/w1200/2023/10/fre
 const BaseUrl = "http://localhost:3000/api"
 
 const page = () => {
+
+    const Session = useSession()
+    const Seller = Session?.data?.user
+    console.log(Seller);
 
     const rout = useRouter()
     const [preview, setPreview] = useState(null);
@@ -51,7 +56,7 @@ const page = () => {
         e.preventDefault();
         const url = await UploadImage(image);
 
-        const data = { image: url, name, description, price: parseInt(price), stock: parseInt(stock), Catagory, sellerId: 1 }
+        const data = { image: url, name, description, price: parseInt(price), stock: parseInt(stock), Catagory, sellerId: Seller.id }
         console.log(data);
         const responce = await fetch(`${BaseUrl}/allProduct`, {
             method: "POST",
@@ -61,13 +66,16 @@ const page = () => {
             body: JSON.stringify(data)
         })
 
+        const notify = responce.json()
+
         if (!responce.ok) {
-            console.log(responce.messege);
+            console.log(notify.messege);
+            toast.success(notify.messege);
         }
         if (responce.ok) {
-            console.log(responce.messege);
-            toast.success("Upload Product Successfull")
-               rout.push('/')
+            console.log(notify.messege);
+            toast.success(notify.messege);
+            rout.push('/')
         }
     }
 

@@ -17,7 +17,6 @@ const Product = () => {
                 console.log(result.Error);
             }
             if (response.ok) {
-                console.log(response.ok);
                 setData(result);
             }
         } catch (error) {

@@ -2,7 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/shared/Navbar";
 import Footer from "@/src/shared/Footer";
-
+import Session from "@/Context/Session";
+import GlobalProvider from "./GlobalProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +16,17 @@ export default function RootLayout({ children }) {
   return (
     <html data-theme="light" lang="en">
       <body className={inter.className}>
-        <div className="md:mx-16">
-          <Navbar />
-          <hr />
-          {children}
-          <hr />
-          <Footer />
-        </div>
+        <Session>
+          <GlobalProvider>
+            <div className="md:mx-16">
+              <Navbar />
+              <hr />
+              {children}
+              <hr />
+              <Footer />
+            </div>
+          </GlobalProvider>
+        </Session>
       </body>
     </html>
   );
