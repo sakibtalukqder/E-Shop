@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import SellerDashboard from '../page';
-import { useSession } from 'next-auth/react';
+import SellerDashboard from '../SellerDashboard';
 import Link from 'next/link';
 
 const BaseUrl = 'http://localhost:3000/api'
@@ -9,12 +8,10 @@ const BaseUrl = 'http://localhost:3000/api'
 const page = () => {
 
 
-    const Session = useSession()
-    const id = (Session?.data?.user?.id);
+    const id = localStorage.getItem('userId')
     console.log(id);
-
+    
     const [data, setData] = useState()
-    console.log(data);
 
     const getData = async () => {
         try {
@@ -37,7 +34,6 @@ const page = () => {
         }
     }, [])
 
-
     return (
         <SellerDashboard>
             <h2 className="text-2xl font-semibold mb-4">Products</h2>
@@ -58,55 +54,57 @@ const page = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             {
-                                                data?.Product?.map((product, index) => (
-                                                    <tr key={index} className="border-b border-dashed last:border-b-0">
-                                                        <td className="p-3 pl-0">
-                                                            <div className="flex items-center">
-                                                                <div className="relative inline-block shrink-0 rounded-2xl me-3">
-                                                                    <img
-                                                                        src={product.image}
-                                                                        className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl"
-                                                                        alt=""
-                                                                    />
+                                                data !== '' ?
+                                                    data?.Product?.map((product, index) => (
+                                                        <tr key={index} className="border-b border-dashed last:border-b-0">
+                                                            <td className="p-3 pl-0">
+                                                                <div className="flex items-center">
+                                                                    <div className="relative inline-block shrink-0 rounded-2xl me-3">
+                                                                        <img
+                                                                            src={product.image}
+                                                                            className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl"
+                                                                            alt=""
+                                                                        />
+                                                                    </div>
+                                                                    <div className="flex flex-col justify-start">
+                                                                        <Link href="#">
+                                                                            <div className="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary">
+                                                                                {product.name}
+                                                                            </div>
+                                                                        </Link>
+                                                                    </div>
                                                                 </div>
-                                                                <div className="flex flex-col justify-start">
-                                                                    <Link href="#">
-                                                                        <div className="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary">
-                                                                            {product.name}
-                                                                        </div>
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="p-3 pr-0 text-center">
-                                                            <span className="font-semibold text-md/normal">{product.Catagory}</span>
-                                                        </td>
-                                                        <td className="p-3 pr-0 text-center">
-                                                            <span className="font-semibold text-md/normal">{product.stock}</span>
-                                                        </td>
-                                                        <td className="p-3 pr-0 text-center">
-                                                            <span className="font-semibold text-md/normal">{product.price}</span>
-                                                        </td>
-                                                        <td className="p-3 pr-0 ">
-                                                            <button className="btn btn-sm">
-                                                                <span className="flex items-center justify-center p-0 m-0 leading-none shrink-0 ">
-                                                                    Edit{' '}
-                                                                    <svg
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        fill="none"
-                                                                        viewBox="0 0 24 24"
-                                                                        strokeWidth="1.5"
-                                                                        stroke="currentColor"
-                                                                        className="w-4 h-4"
-                                                                    >
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                                                    </svg>
-                                                                </span>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))
+                                                            </td>
+                                                            <td className="p-3 pr-0 text-center">
+                                                                <span className="font-semibold text-md/normal">{product.Catagory}</span>
+                                                            </td>
+                                                            <td className="p-3 pr-0 text-center">
+                                                                <span className="font-semibold text-md/normal">{product.stock}</span>
+                                                            </td>
+                                                            <td className="p-3 pr-0 text-center">
+                                                                <span className="font-semibold text-md/normal">{product.price}</span>
+                                                            </td>
+                                                            <td className="p-3 pr-0 ">
+                                                                <button className="btn btn-sm">
+                                                                    <span className="flex items-center justify-center p-0 m-0 leading-none shrink-0 ">
+                                                                        Edit{' '}
+                                                                        <svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            fill="none"
+                                                                            viewBox="0 0 24 24"
+                                                                            strokeWidth="1.5"
+                                                                            stroke="currentColor"
+                                                                            className="w-4 h-4"
+                                                                        >
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    )) : <> Post A Product </>
                                             }
 
                                         </tbody>

@@ -3,14 +3,12 @@ import { useParams } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import NotFound from './NotFound';
 import CartContext from '@/Context/CartContex';
+import Link from 'next/link';
 
 const BaseUrl = 'http://localhost:3000/api'
 
 const page = () => {
 
-    useEffect(() => {
-        getData();
-    }, [])
 
     const { id } = useParams("")
 
@@ -28,6 +26,10 @@ const page = () => {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        getData();
+    }, [])
 
     const [data, setData] = useState({});
     const product = data.Product ? data.Product : '';
@@ -98,7 +100,7 @@ const page = () => {
                                 </div>
                                 <div className="flex gap-2 mb-4 items-end justify-start">
                                     <button onClick={AddToCart} className="w-1/2 btn btn-outline btn-primary">Add to Cart</button>
-                                    <button className="w-1/2 btn btn-outline btn-accent">Checkout</button>
+                                    <Link href={'/Outlate/User/checkout'} className="w-1/2 btn btn-outline btn-accent">Checkout</Link>
                                 </div>
                             </div>
                         </div>

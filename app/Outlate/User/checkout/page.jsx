@@ -36,8 +36,6 @@ const Cart = () => {
     ), 0)
     const deleveryCharge = 150
     const totalPrice = Price + deleveryCharge;
-    console.log("TotalPrice:", Price);
-
 
     return (
         <>
@@ -135,7 +133,7 @@ const Cart = () => {
                                         }(Units)</span>
                                     </li>
                                     <li className="flex justify-between text-gray-600  mb-1">
-                                        <span>TAX:</span>
+                                        <span>Delevary Charge:</span>
                                         <span>${deleveryCharge}</span>
                                     </li>
                                     <li className="text-lg font-bold border-t flex justify-between mt-3 pt-3">
@@ -144,9 +142,9 @@ const Cart = () => {
                                     </li>
                                 </ul>
 
-                                <a className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer">
+                                <Link href={'checkout/Shipping'} className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer">
                                     Continue
-                                </a>
+                                </Link>
 
                                 <Link
                                     href="/"

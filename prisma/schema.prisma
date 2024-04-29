@@ -38,29 +38,30 @@ model Product {
   image       String
   price       Float
   stock       Int
-  sellerId    Int // Foreign key referencing Seller table
-
-  // Define a many-to-one relationship between Product and Seller
-  // Many Products belong to one Seller
-  seller User    @relation(fields: [sellerId], references: [id])
-  Order  Order[]
+  sellerId    Int
+  seller      User   @relation(fields: [sellerId], references: [id])
 }
 
 // Define the Order table to store information about orders
 model Order {
-  id         Int      @id @default(autoincrement())
-  userId     Int // Foreign key referencing User table
-  productId  Int // Foreign key referencing Product table
-  quantity   Int
-  totalPrice Float
-  createdAt  DateTime @default(now())
+  id              Int              @id @default(autoincrement())
+  userId          Int
+  totalPrice      Float
+  createdAt       DateTime         @default(now())
+  user            User             @relation(fields: [userId], references: [id])
+  orderEdProducts OrderEdProduct[]
+}
 
-  // Define a many-to-one relationship between Order and User
-  // Many Orders belong to one User
-  user User @relation(fields: [userId], references: [id])
-
-  // Define a many-to-one relationship between Order and Product
-  // Many Orders contain one Product
-  product  Product @relation(fields: [productId], references: [id])
-  sellerId Int?
+// Define the OrderEdProduct table to store information about products associated with an order
+model OrderEdProduct {
+  idn      Int    @id @default(autoincrement())
+  id       Int
+  name     String
+  price    Float
+  image    String
+  stock    Int
+  sellerId Int
+  quantity Int
+  order    Order  @relation(fields: [orderId], references: [id])
+  orderId  Int // Foreign key referencing Order table
 }

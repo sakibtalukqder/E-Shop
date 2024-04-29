@@ -66,7 +66,7 @@ const page = () => {
             body: JSON.stringify(data)
         })
 
-        const notify = responce.json()
+        const notify = await responce.json()
 
         if (!responce.ok) {
             console.log(notify.messege);

@@ -1,15 +1,15 @@
 "use client"
 import React from 'react';
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 
-
 const page = () => {
 
     const route = useRouter()
+    
 
     const Login = async (e) => {
         e.preventDefault();
@@ -20,14 +20,27 @@ const page = () => {
                 redirect: false,
             });
 
+            // const result = await JSON.parse(loginData)
+            // console.log(result);
+
             if (loginData?.error) {
                 toast.error(loginData.error)
                 console.log(loginData.error);
                 console.log(loginData);
             } else {
                 console.log(loginData);
-                route.push('/Outlate');
-                window.location.reload();
+
+                const session = await getSession();
+                if (session?.user) {
+                    const userId = session.user.id; // Extracting user ID from the session
+                    localStorage.setItem('userId',userId)
+                    route.push('/Outlate');
+                    window.location.reload();
+                    return userId; // Return the user ID
+                } else {
+                    console.log("No user session found");
+                }
+
             }
         } catch (error) {
             console.log("Error : ", error);

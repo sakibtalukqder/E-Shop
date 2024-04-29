@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-export default function SellerDashboard({children}) {
+export default function SellerDashboard({ children }) {
   return (
     <Fragment>
       <Head>
@@ -17,10 +17,10 @@ export default function SellerDashboard({children}) {
           </div>
           <nav className="mt-6">
             <Link href={'/Outlate/Seller/Dashboard/Orders'} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
-              <span>Orders</span>
+              <span>Your Orders</span>
             </Link>
             <Link href={'/Outlate/Seller/Dashboard/Products'} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
-              <span>Products</span>
+              <span>Your Products</span>
             </Link>
             <Link href={"/Outlate/Seller/PostProduct"} className="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
               <span>Upload Product</span>
@@ -31,7 +31,7 @@ export default function SellerDashboard({children}) {
 
         {/* Main content */}
         <div className="flex-1 p-8 overflow-scroll">
-          
+
           {/* Add your main content here */}
           {children}
         </div>

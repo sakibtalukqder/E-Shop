@@ -16,7 +16,7 @@ const Navbar = async () => {
 
         {
             (session?.user?.role == "SELLER") || (session?.user?.role === "ADMIN") ?
-                <li><Link href={'/Outlate/Seller/Dashboard'}>Dashboard</Link></li> : ''
+                <li><Link href={'/Outlate/Seller/Dashboard/Products'}>Dashboard</Link></li> : ''
         }
 
         {
