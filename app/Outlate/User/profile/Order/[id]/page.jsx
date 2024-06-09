@@ -51,25 +51,15 @@ const page = () => {
 
                                 <h2 className="text-lg font-semibold my-3">Shipping Adress</h2>
                                 <label className="flex p-3 border border-gray-200 rounded-md bg-gray-50 hover:border-blue-400 hover:bg-blue-50 cursor-pointer">
-                                    
-                                    <ul className="py-1 w-full">
-                                        <li className="flex justify-between text-gray-600  mb-1">
-                                            <span>Name : </span>
-                                            <span>{data?.user?.name}</span>
-                                        </li>
-                                        <li className="flex justify-between text-gray-600  mb-1">
-                                            <span>Mailling Adress : </span>
-                                            <span>{data?.user?.presentAddress}</span>
-                                        </li>
-                                        <li className="flex justify-between text-gray-600  mb-1">
-                                            <span>Email : </span>
-                                            <span>{data?.user?.email}</span>
-                                        </li>
-                                        <li className="flex justify-between text-gray-600  mb-1">
-                                            <span>Mobile no : </span>
-                                            <span>{data?.user?.mobileNumber}</span>
-                                        </li>
-                                    </ul>
+
+                                    <div className="py-1 w-full">
+                                        <div className="grid grid-cols-3 items-center">
+                                            <span>Name : </span> <span className=' col-span-2'>{data?.user?.name}</span>
+                                            <span>Mailling Adress : </span> <span className=' col-span-2'>{data?.user?.presentAddress}</span>
+                                            <span>Email : </span> <span className=' col-span-2'>{data?.user?.email}</span>
+                                            <span>Mobile no : </span> <span className=' col-span-2'>{data?.user?.mobileNumber}</span>
+                                        </div>
+                                    </div>
 
                                 </label>
 

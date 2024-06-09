@@ -80,8 +80,6 @@ const page = () => {
     }
 
 
-
-
     return (
         <form onSubmit={postProduct} className='flex-col md:flex-row flex gap-4 items-center justify-center py-4 md:m-4'>
             <ToastContainer />
@@ -94,7 +92,7 @@ const page = () => {
                         />
                     </figure>
 
-                    <input accept="image/png, image/jpg, image/jpeg" placeholder='Select an Image' onChange={Upload} type="file" className="file-input file-input-bordered w-full max-w-xs" />
+                    <input accept="image/png, image/jpg, image/jpeg, image/webp" placeholder='Select an Image' onChange={Upload} type="file" className="file-input file-input-bordered w-full max-w-xs" />
 
                 </label>
             </div>

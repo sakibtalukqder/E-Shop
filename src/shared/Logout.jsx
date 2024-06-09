@@ -2,12 +2,19 @@
 import { signOut } from 'next-auth/react';
 import React from 'react';
 
+const localstore = () => {
+    localStorage.clear();
+}
+
 const Logout = () => {
     return (
-        <button onClick={() => signOut({
-            redirect: true,
-            callbackUrl: `${window.location.origin}/Components/login`,
-        })} className='text-red-500 w-full btn-sm'>Logout</button>
+        <div onClick={localstore} className='text-red-500 w-full btn-sm'>
+            <button onClick={() => signOut({
+                redirect: true,
+                callbackUrl: `${window.location.origin}/Components/login`,
+            })} >Logout</button>
+        </div>
+
     );
 };
 

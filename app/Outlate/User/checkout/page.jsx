@@ -112,7 +112,7 @@ const Cart = () => {
 
                                             <hr className="my-4" />
                                         </div>
-                                    )) : <></>
+                                    )) : <>No Items in Carts</>
                                 }
                             </article>
                         </main>

@@ -5,7 +5,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{html,js,jsx}",
+    "./node_modules/keep-react/**/*.{js,jsx,ts,tsx}",
   ],
+
   theme: {
     extend: {
       backgroundImage: {
@@ -15,8 +17,13 @@ module.exports = {
       },
     },
   },
+
   plugins: [require("daisyui")],
+
   daisyui: {
     themes: ["light", "dark"],
   },
+
+  presets: [require("keep-react/preset")],
+  
 };

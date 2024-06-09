@@ -1,7 +1,8 @@
 "use client"
 import { useState } from "react";
-import { SliderComponent } from "./Home/SliderComponent";
 import Product from "./Components/product/page";
+import SliderComponent from "./Home/SliderComponent";
+import Catagory from "./Home/Catagory";
 
 const page = () => {
 
@@ -18,9 +19,13 @@ const page = () => {
 
 
   return (
-    <>
-      <div className="m-4 flex items-center justify-center flex-col">
-        <SliderComponent />
+    <div>
+      <div className="m-4 flex items-center flex-col">
+
+        <div className="m-2 mt-6">
+          <SliderComponent />
+        </div> <Catagory />
+
         <div className="w-full h-1 relative">
           <div className="h-full w-1/3 absolute top-0 left-0 bg-red-500"></div>
           <div className="h-full w-1/3 absolute top-0 left-1/3 bg-blue-500"></div>
@@ -37,7 +42,7 @@ const page = () => {
           {isLoading ? 'Loading...' : 'Load More'}
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -40,11 +40,13 @@ CREATE TABLE `Order` (
 -- CreateTable
 CREATE TABLE `OrderEdProduct` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `peoductId` INTEGER NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `price` DOUBLE NOT NULL,
     `image` VARCHAR(191) NOT NULL,
     `stock` INTEGER NOT NULL,
     `sellerId` INTEGER NOT NULL,
+    `userId` INTEGER NOT NULL,
     `quantity` INTEGER NOT NULL,
     `orderId` INTEGER NOT NULL,
 
@@ -56,6 +58,9 @@ ALTER TABLE `Product` ADD CONSTRAINT `Product_sellerId_fkey` FOREIGN KEY (`selle
 
 -- AddForeignKey
 ALTER TABLE `Order` ADD CONSTRAINT `Order_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `OrderEdProduct` ADD CONSTRAINT `OrderEdProduct_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `OrderEdProduct` ADD CONSTRAINT `OrderEdProduct_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `Order`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

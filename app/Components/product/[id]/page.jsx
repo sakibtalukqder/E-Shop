@@ -1,14 +1,16 @@
 "use client"
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import NotFound from './NotFound';
 import CartContext from '@/Context/CartContex';
 import Link from 'next/link';
 
+
 const BaseUrl = 'http://localhost:3000/api'
 
 const page = () => {
-
+    
+    const user = localStorage.getItem('userId')
 
     const { id } = useParams("")
 
@@ -47,6 +49,13 @@ const page = () => {
             stock: product.stock,
             sellerId: product.sellerId,
         })
+    }
+
+    const route = useRouter()
+
+    const redirect = () => {
+        route.push("/Components/login")
+        // window.location.href = `${window.location.origin}/Components/login`
     }
 
 
@@ -99,7 +108,7 @@ const page = () => {
                                     </p>
                                 </div>
                                 <div className="flex gap-2 mb-4 items-end justify-start">
-                                    <button onClick={AddToCart} className="w-1/2 btn btn-outline btn-primary">Add to Cart</button>
+                                    <button onClick={!user ? redirect : AddToCart} className="w-1/2 btn btn-outline btn-primary">Add to Cart</button>
                                     <Link href={'/Outlate/User/checkout'} className="w-1/2 btn btn-outline btn-accent">Checkout</Link>
                                 </div>
                             </div>

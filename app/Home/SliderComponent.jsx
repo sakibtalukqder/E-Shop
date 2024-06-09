@@ -1,38 +1,39 @@
+'use client'
 
-"use client";
-import Catagory from "./Catagory";
+import classNames from 'embla-carousel-class-names'
+import { Carousel } from 'keep-react'
 
-const url = [
-    "/Carosel/cImage-1.jpg",
-    "/Carosel/cImage-2.jpg",
-    "/Carosel/cImage-3.jpg",
-    "/Carosel/cImage-4.jpg",
-    "/Carosel/cImage-5.jpg",
-    "/Carosel/cImage-6.jpg",
-    "/Carosel/cImage-7.jpg",
-    "/Carosel/cImage-8.jpg",
-]
+const SliderComponent = () => {
 
-export const SliderComponent = () => {
+    const url = [
+        "/Carosel/cImage-1.jpg",
+        "/Carosel/cImage-2.jpg",
+        "/Carosel/cImage-3.jpg",
+        "/Carosel/cImage-4.jpg",
+        "/Carosel/cImage-5.jpg",
+        "/Carosel/cImage-6.jpg",
+        "/Carosel/cImage-7.jpg",
+        "/Carosel/cImage-8.jpg",
+    ];
+
     return (
-        <div className="flex-col items-center justify-center w-[80%] rounded-md">
-            <div className="carousel justify-center w-full">
-                {
-                    url.map((url, index) => (
-                        <div key={index} id={`item${index}`} className="carousel-item w-full shadow-lg">
-                            <img src={url} className="w-full" alt={`slider-${index}`} />
-                        </div>
-                    ))
-                }
-            </div>
-            <div className="flex items-center justify-center w-full py-2 gap-2">
-                {
-                    url.map((url, index) => (
-                        <a key={index} href={`#item${index + 1}`} className="btn btn-xs">{index + 1}</a>
-                    ))
-                }
-            </div>
-            <Catagory />
-        </div>
+        <Carousel options={{ loop: true }} plugins={[classNames()]}>
+            <Carousel.Slides>
+                {url.map((_, index) => (
+                    <Carousel.Item key={index} className="flex-[0_0_70%] [&:not(.is-snapped)]:opacity-[0.16]">
+                        <img className="rounded-xl" src={_} alt="Carousel Item" />
+                    </Carousel.Item>
+                ))}
+            </Carousel.Slides>
+            <Carousel.Control>
+                <Carousel.Buttons>
+                    <Carousel.PrevButton />
+                    <Carousel.NextButton />
+                </Carousel.Buttons>
+                <Carousel.Indicators />
+            </Carousel.Control>
+        </Carousel>
     )
-}
+};
+
+export default SliderComponent;

@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const BaseUrl = "http://localhost:3000/api"
 
+const imgUrl = "https://cdni.iconscout.com/illustration/premium/thumb/sign-up-3391266-2937870.png"
+
 const page = () => {
 
     const route = useRouter();
@@ -131,9 +133,9 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex-1 bg-gray-100 rounded-sm text-center hidden lg:flex">
-                    <div className="ms-1 w-full bg-cover bg-center bg-no-repeat"
-                        style={{ backgroundImage: "url('https://img.freepik.com/free-vector/no-time-concept-illustration_114360-4290.jpg?w=740&t=st=1713296487~exp=1713297087~hmac=7a057faf53781542749e7620f21f46123a2a9a3934370e7c756a62b317c136a8')" }} >
+                <div className="flex-1 justify-center bg-white border-gray-800 border-spacing-2 rounded-sm text-center hidden lg:flex">
+                    <div className="ms-1 w-1/2 bg-cover bg-center bg-no-repeat me-6"
+                        style={{ backgroundImage: `url(${imgUrl})` }} >
                     </div>
                 </div>
             </div>

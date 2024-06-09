@@ -36,13 +36,14 @@ export const POST = async (request) => {
                 totalPrice: totalPrice,
                 orderEdProducts: {
                     create: products.map(product => ({
-                        id: product.id,
+                        peoductId: product.id,
                         name: product.name,
                         price: product.price,
                         image: product.image,
                         stock: product.stock,
                         sellerId: product.sellerId,
                         quantity: product.quantity,
+                        userId: userId,
                     }))
                 }
             },
@@ -50,6 +51,17 @@ export const POST = async (request) => {
                 orderEdProducts: true // Include the associated orderEdProducts in the response
             }
         });
+
+        const updatePromises = products.map(product =>
+            prisma.product.update({
+                where: { id: product.id },
+                data: { stock: product.stock - product.quantity }, // Decrease the stock by the quantity ordered
+            })
+        );
+
+        await Promise.all(updatePromises);
+
+        // return order;
 
         // Return success response with the created order
         return NextResponse.json({ order }, { status: 200 });
@@ -61,3 +73,28 @@ export const POST = async (request) => {
         return NextResponse.json({ error: 'Failed to create order.' }, { status: 500 });
     }
 };
+
+// export const PATCH = async (request, res) => {
+//     try {
+//         const { Data } = await request.body;
+
+//         if (!Array.isArray(Data) || Data.length === 0) {
+//             return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
+//         }
+
+//         const updatePromises = Data.map(product =>
+//             prisma.product.update({
+//                 where: { id: product.id },
+//                 data: { stock: (stock - product.quantity) },
+//             })
+//         );
+
+//         const updatedData = await Promise.all(updatePromises);
+
+//         NextResponse.json({ message: 'Your Order Is confirmed', Data: updatedData }, { status: 200 });
+//     } catch (error) {
+//         console.error('Error updating stock:', error);
+//         NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+//     }
+
+// };

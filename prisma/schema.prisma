@@ -15,18 +15,17 @@ enum Role {
 
 // Define the User table to store information about users
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-
+  id             Int              @id @default(autoincrement())
+  name           String
+  email          String           @unique
+  password       String
+  role           Role             @default(USER)
+  createdAt      DateTime         @default(now())
   presentAddress String
   mobileNumber   String
-
-  Order    Order[]
-  products Product[]
+  Order          Order[]
+  products       Product[]
+  OrderEdProduct OrderEdProduct[]
 }
 
 // Define the Product table to store information about products
@@ -54,14 +53,16 @@ model Order {
 
 // Define the OrderEdProduct table to store information about products associated with an order
 model OrderEdProduct {
-  idn      Int    @id @default(autoincrement())
-  id       Int
-  name     String
-  price    Float
-  image    String
-  stock    Int
-  sellerId Int
-  quantity Int
-  order    Order  @relation(fields: [orderId], references: [id])
-  orderId  Int // Foreign key referencing Order table
+  id        Int    @id @default(autoincrement())
+  peoductId Int //product id
+  name      String
+  price     Float
+  image     String
+  stock     Int
+  sellerId  Int
+  userId    Int
+  quantity  Int
+  user      User   @relation(fields: [userId], references: [id])
+  order     Order  @relation(fields: [orderId], references: [id])
+  orderId   Int // Foreign key referencing Order table
 }

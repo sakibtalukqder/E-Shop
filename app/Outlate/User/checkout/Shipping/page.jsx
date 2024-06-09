@@ -139,7 +139,7 @@ const Shipping = () => {
                                     >
                                         Back
                                     </Link>
-                                    <button onClick={() => ConfirmOrder()} className="px-5 py-2 inline-block text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer">
+                                    <button onClick={() => ConfirmOrder()} disabled={!user?.presentAddress} className={`px-5 py-2 inline-block text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700  ${ !user?.presentAddress ? "cursor-not-allowed" : "cursor-pointer"} `}>
                                         Checkout
                                     </button>
                                 </div>

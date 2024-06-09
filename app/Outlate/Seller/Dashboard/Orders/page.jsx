@@ -7,11 +7,9 @@ const BaseUrl = 'http://localhost:3000/api'
 
 const page = () => {
 
-
+    
     const id = localStorage.getItem('userId')
-
     const [data, setData] = useState()
-
     console.log(data);
 
     const getData = async () => {
@@ -86,9 +84,9 @@ const page = () => {
                                                                 <span className="font-semibold text-md/normal">{product.price}</span>
                                                             </td>
                                                             <td className="p-3 pr-0 ">
-                                                                <button className="btn btn-sm">
+                                                                <Link href={`Orders/${product.id}`} className="btn btn-sm">
                                                                     <span className="flex items-center justify-center p-0 m-0 leading-none shrink-0 ">
-                                                                        View Product{' '}
+                                                                        View Order{' '}
                                                                         <svg
                                                                             xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none"
@@ -100,10 +98,10 @@ const page = () => {
                                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                                                                         </svg>
                                                                     </span>
-                                                                </button>
+                                                                </Link>
                                                             </td>
                                                         </tr>
-                                                    )) : <> Post A Product </>
+                                                    )) : <> You Have no order </>
                                             }
 
                                         </tbody>

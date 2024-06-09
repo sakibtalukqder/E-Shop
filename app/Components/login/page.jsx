@@ -6,6 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 
+const imgUrl = "https://i.pinimg.com/736x/4a/90/33/4a903338c0e478248153bd8f3f6f6745.jpg"
+
 const page = () => {
 
     const route = useRouter()
@@ -20,9 +22,6 @@ const page = () => {
                 redirect: false,
             });
 
-            // const result = await JSON.parse(loginData)
-            // console.log(result);
-
             if (loginData?.error) {
                 toast.error(loginData.error)
                 console.log(loginData.error);
@@ -34,8 +33,7 @@ const page = () => {
                 if (session?.user) {
                     const userId = session.user.id; // Extracting user ID from the session
                     localStorage.setItem('userId',userId)
-                    route.push('/Outlate');
-                    window.location.reload();
+                    window.location.href = `${window.location.origin}/Components/product`;
                     return userId; // Return the user ID
                 } else {
                     console.log("No user session found");
@@ -121,9 +119,9 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex-1 bg-gray-100 rounded-sm text-center hidden lg:flex">
-                    <div className="ms-1 w-full bg-cover bg-center bg-no-repeat"
-                        style={{ backgroundImage: "url('https://img.freepik.com/free-vector/no-time-concept-illustration_114360-4290.jpg?w=740&t=st=1713296487~exp=1713297087~hmac=7a057faf53781542749e7620f21f46123a2a9a3934370e7c756a62b317c136a8')" }} >
+                <div className="flex-1 justify-center bg-gray-100 rounded-sm text-center hidden lg:flex">
+                    <div className="ms-1 w-full bg-cover bg-center bg-no-repeat m-1"
+                        style={{ backgroundImage: `url(${imgUrl})` }} >
                     </div>
                 </div>
             </div>
